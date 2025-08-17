@@ -1,15 +1,22 @@
-const panels = document.querySelectorAll('.panel')
+const boxes = document.querySelectorAll('.box')
 
-panels.forEach(panel => {
-    panel.addEventListener('click', () => {
-        removeActiveClasess()
-        panel.classList.add('active')
-    })
-    
-})
+window.addEventListener('scroll', checkBoxes)
 
-function removeActiveClasess(){
-    panels.forEach(panel =>{
-        panel.classList.remove('active')
-    })
+checkBoxes()
+
+function checkBoxes(){
+   const triggerBottom = window.innerHeight / 5 * 4
+
+   boxes.forEach(box => {
+        const boxTop = box.getBoundingClientRect().top
+
+        if(boxTop < triggerBottom)   
+        {
+            box.classList.add('show')
+        }
+        else
+        {
+            box.classList.remove('show')
+        }
+   })
 }
